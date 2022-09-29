@@ -14,19 +14,23 @@ class itemview{
     function renderlist () {
     echo '
         <h1>Chocolateria</h1>
-        <ul>
-            <li><a href="item">Ver Item</a></li>
-            <li><a href="item/detail">Ver detalle del item</a></li>
-            <li><a href="marcas">Ver marcas</a></li>
-            <li><a href="item/marca">Ver item por marca</a></li>
-
-        </ul>';
+        <a href="login">Loguearse</a>;
+        <table>
+            <th>Ver Chocolate</th>
+            <th>Ver marca</th>
+            <th><a href="item/marca">Seleccionar todos los chocolates de una marca</a></th>
+        </table>';
     }
+    
     function printitems ($items) {
-        echo '<tr> Chocolate: </tr>';
         foreach($items as $item){
-            echo "<p> $item->nombre_chocolate </p>";
+            echo "<tr>"; 
+            echo "<td> $item->nombre_chocolate </td>";
+            echo '<td> <a href="item/detail">Ver detalle del chocolate </a></td>';
+            echo '<br>';
+            echo "</tr>";
         }
     }
+
 
 }

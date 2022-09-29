@@ -3,6 +3,7 @@
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 require_once 'app/controllers/itemcontroller.php';
 require_once 'app/controllers/brandcontroller.php';
+require_once 'app/controllers/usercontroller.php';
 
 $action = 'home';
 
@@ -20,6 +21,16 @@ switch ($params[0]) {
         $controller->showitems();
         $controllerbrand->showbrand();
         break;
+
+    case 'login':
+      $controller = new usercontroller();
+      $controller->login();
+        
+    break;
+    case 'logout':
+     $controller = new usercontroller();
+     $controller->logout();
+    break;
     default:
         echo 'error 404';
         break;
