@@ -15,22 +15,30 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'home':
-        $controller = new itemcontroller();
         $controllerbrand = new brandcontroller();
-        $controller->showlist();
-        $controller->showitems();
         $controllerbrand->showbrand();
         break;
 
+    case 'brand':
+        $marca = $params[1]; 
+    break;
     case 'login':
       $controller = new usercontroller();
-      $controller->login();
-        
+      $controller->login(); 
     break;
     case 'logout':
      $controller = new usercontroller();
      $controller->logout();
     break;
+    case 'delete':
+    break;
+
+    case 'edit':
+    break;
+
+    case 'detail':
+    break;
+    
     default:
         echo 'error 404';
         break;

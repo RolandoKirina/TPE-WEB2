@@ -4,6 +4,7 @@
 class userview {
     function showlogin () {
     echo '
+    <a href="item">Volver Atras</a>
     <h1>Complete el formulario: </h1>
     <form method="POST">
     <label>Ingrese su nombre de usuario: </label>

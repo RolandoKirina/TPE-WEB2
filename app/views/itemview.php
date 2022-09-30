@@ -18,7 +18,7 @@ class itemview{
         <table>
             <th>Ver Chocolate</th>
             <th>Ver marca</th>
-            <th><a href="item/marca">Seleccionar todos los chocolates de una marca</a></th>
+            <th><a href="marca">Seleccionar todos los chocolates de una marca</a></th>
         </table>';
     }
     
@@ -26,7 +26,7 @@ class itemview{
         foreach($items as $item){
             echo "<tr>"; 
             echo "<td> $item->nombre_chocolate </td>";
-            echo '<td> <a href="item/detail">Ver detalle del chocolate </a></td>';
+            echo '<td> <a href="detail">Ver detalle del chocolate </a></td>';
             echo '<br>';
             echo "</tr>";
         }
