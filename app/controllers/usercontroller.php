@@ -23,8 +23,8 @@ class usercontroller {
         }
     }
     function login (){
+
         $this->view->showlogin();
-        $this->model->adduser($user, $password);
     }
  
     function logout () {
@@ -32,4 +32,3 @@ class usercontroller {
     }
   
 }
- 

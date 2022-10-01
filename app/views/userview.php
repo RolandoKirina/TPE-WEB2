@@ -1,24 +1,24 @@
 <?php
 
+require_once './smarty-4.2.1/libs/Smarty.class.php';
 
 class userview {
+
+    private $smarty;
+
+
+    public function __construct(){
+        $this->smarty = new Smarty ();
+    }
+
     function showlogin () {
-    echo '
-    <a href="item">Volver Atras</a>
-    <h1>Complete el formulario: </h1>
-    <form method="POST">
-    <label>Ingrese su nombre de usuario: </label>
-    <input type="text" placeholder="Usuario" name="user">
-    <label>Ingrese su contraseña: </label>
-    <input type="text" placeholder="Contraseña" name="Password">
-    <button> Enviar Datos </button> 
-    <a href="logout">Logout</a>;
-    ';
+     $login = false;
+     $this->smarty->assign("login", $login);
+     $this->smarty->display('login.tpl');
     }
 
 
     function showmsg (){
-        //Si el usuario existe y las contraseñas coinciden
       if($user && $password==($user->password)){
        echo "Ha iniciado sesión";
       }

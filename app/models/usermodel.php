@@ -20,16 +20,7 @@
             $user = $query->fetchAll(PDO::FETCH_OBJ);
             return $user;
         }
-
-        function adduser ($user, $password) {
-            $query = $this->db->prepare("INSERT INTO users (user, password) VALUES (?, ?)");
-            $query->execute([$user, $password]);
-
-            return $this->db->lastInsertId();
-        }
-
-
-        
+ 
 
 
 }

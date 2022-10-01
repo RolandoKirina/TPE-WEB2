@@ -18,27 +18,35 @@ switch ($params[0]) {
         $controllerbrand = new brandcontroller();
         $controllerbrand->showbrand();
         break;
+    case 'add':
+        $controller = new brandcontroller();
+        $controller->addData();
+        break;
+    case 'delete':
+        $id = $params[1];
+        $controller = new brandcontroller ();
+        $controller->delete($id);
+        break;
 
-    case 'brand':
-        $marca = $params[1]; 
-    break;
-    case 'login':
+    /*case 'edit':
+        $controller = new brandcontroller();
+        echo "editar";
+        break;*/
+    /*case 'login':
       $controller = new usercontroller();
       $controller->login(); 
-    break;
-    case 'logout':
+    break;*/
+    /*case 'logout':
      $controller = new usercontroller();
      $controller->logout();
-    break;
-    case 'delete':
-    break;
-
-    case 'edit':
-    break;
-
-    case 'detail':
-    break;
-    
+    break;*/   
+    /*case 'detail':
+        echo "mostrardetail";
+    break;*/
+     /*case 'item':
+        $controller = new itemcontroller();
+        $controller->showitems(); 
+    break;*/
     default:
         echo 'error 404';
         break;

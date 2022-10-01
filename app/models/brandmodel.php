@@ -23,7 +23,16 @@ class brandmodel {
         return $brands;
     }
 
+    function insertData($name, $country, $year){
+        $query = $this->db->prepare("INSERT INTO marca (nombre_marca, anio_creacion, pais_marca) VALUES (?, ?, ?)");
+        $query->execute([$name, $country, $year]);
+        return $this->db->lastInsertId();
 
-    
+    }
+
+    function deletebrand ($id){
+        $query = $this->db->prepare("DELETE FROM marca WHERE id_marca = ?");
+        $query->execute([$id]);
+    }
 
 }
