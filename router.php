@@ -1,9 +1,9 @@
 <?php
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-require_once 'app/controllers/itemcontroller.php';
-require_once 'app/controllers/brandcontroller.php';
-require_once 'app/controllers/usercontroller.php';
+require_once './app/controllers/chocolatecontroller.php';
+require_once './app/controllers/brandcontroller.php';
+require_once './app/controllers/usercontroller.php';
 
 $action = 'home';
 
@@ -13,29 +13,27 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
+$brandcontroller = new brandcontroller();
+
 switch ($params[0]) {
     case 'home':
-        $controllerbrand = new brandcontroller();
-        $controllerbrand->showbrand();
+        $brandcontroller->showbrand();
         break;
     case 'add':
-        $controller = new brandcontroller();
-        $controller->addData();
+        $brandcontroller->addData();
         break;
     case 'delete':
         $id = $params[1];
-        $controller = new brandcontroller ();
-        $controller->delete($id);
+        $brandcontroller->delete($id);
         break;
-
-    /*case 'edit':
-        $controller = new brandcontroller();
-        echo "editar";
-        break;*/
-    /*case 'login':
+    case 'edit':
+        $id = $params[1];
+        $brandcontroller->edit($id);
+        break;
+    case 'login':
       $controller = new usercontroller();
       $controller->login(); 
-    break;*/
+    break;
     /*case 'logout':
      $controller = new usercontroller();
      $controller->logout();
@@ -43,9 +41,9 @@ switch ($params[0]) {
     /*case 'detail':
         echo "mostrardetail";
     break;*/
-     /*case 'item':
-        $controller = new itemcontroller();
-        $controller->showitems(); 
+    /*case 'chocolate':
+        $controllerchocolate = new chocolatecontroller();
+        $controllerchocolate->showitems();
     break;*/
     default:
         echo 'error 404';

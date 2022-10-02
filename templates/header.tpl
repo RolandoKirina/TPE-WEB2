@@ -14,8 +14,8 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-light" class="mb-5">
             <div class="container-fluid">
-              <img href="img/choco.jpg" alt="chocolate">
-              <a class="navbar-brand" href="">Chocolateria</a>
+
+              <a class="navbar-brand" href="home">Chocolateria</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -25,7 +25,7 @@
                     <a class="nav-link" aria-current="page" href="home">Home</a>
                   </li>
                   <li class="nav-item">
-                   <a class="nav-link" aria-current="page" href="item">Item</a>
+                   <a class="nav-link" aria-current="page" href="chocolate">Chocolates</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="login">Login</a>

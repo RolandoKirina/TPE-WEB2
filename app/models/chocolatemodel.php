@@ -1,6 +1,6 @@
 <?php
 
- class itemmodel {
+ class chocolatemodel {
 
     private $db;
 

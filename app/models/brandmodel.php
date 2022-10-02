@@ -14,18 +14,15 @@ class brandmodel {
     }
 
     function getAll () {
-
         $query = $this->db->prepare("SELECT * FROM marca");
         $query->execute();
-
         $brands = $query->fetchAll(PDO::FETCH_OBJ);
-    
         return $brands;
     }
 
-    function insertData($name, $country, $year){
+    function insertData($id, $name, $year, $country){
         $query = $this->db->prepare("INSERT INTO marca (nombre_marca, anio_creacion, pais_marca) VALUES (?, ?, ?)");
-        $query->execute([$name, $country, $year]);
+        $query->execute([$name, $year, $country]);
         return $this->db->lastInsertId();
 
     }
@@ -35,4 +32,8 @@ class brandmodel {
         $query->execute([$id]);
     }
 
+    function update($id){
+      $query = $this->db->prepare("UPDATE marca SET nombre_marca=?, anio_creacion=?,pais_marca=? WHERE id_marca=?");
+      $query->execute([$id]);
+    }
 }

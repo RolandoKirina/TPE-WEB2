@@ -1,6 +1,5 @@
 <?php
 
-
 require_once './app/models/brandmodel.php';
 require_once './app/views/brandview.php';
 
@@ -9,27 +8,21 @@ class brandcontroller {
     private $model;
     private $view;
 
-
     function __construct () {
-        $this->model = new brandmodel ();
-        $this->view = new brandview ();
+        $this->model = new brandmodel();
+        $this->view = new brandview();
     }
 
     function showbrand () {
-
          $brands = $this->model->getAll();
-
          $this->view->showbrands($brands);
     }
 
     function addData (){
-            
             $name = $_POST['name'];
-            $country = $_POST['country'];
             $year = $_POST['year'];
-
-            $id = $this->model->insertData($name, $country, $year);
-
+            $country = $_POST['country'];
+            $id = $this->model->insertData($name, $year, $country);
             header("Location: " . BASE_URL);
         }
 
@@ -37,7 +30,13 @@ class brandcontroller {
         $this->model->deletebrand($id);
         
         header("Location: " . BASE_URL);
-
     }
+    function edit ($id){
+        $name = $_POST['name'];
+        $year = $_POST['year'];
+        $country = $_POST['country'];
+        $id = $this->model->update($id, $name, $year, $country);
+        header("Location: " . BASE_URL);
     }
+}
 

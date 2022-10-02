@@ -10,11 +10,9 @@ class brandview {
       $this->smarty = new Smarty();
     }
 
-  function showbrands ($brands){
-
-    //asigno las variables
-    $this->smarty->assign('brands', $brands);
-
-    $this->smarty->display('brandslist.tpl');
-    }
+    function showbrands ($brands){
+      //asigno las variables
+      $this->smarty->assign('brands', $brands);
+      $this->smarty->display('brandslist.tpl');
+      }
 }

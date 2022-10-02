@@ -1,17 +1,17 @@
 <?php
-include_once 'app/models/itemmodel.php';
-include_once 'app/views/itemview.php';
+include_once 'app/models/chocolatemodel.php';
+include_once 'app/views/chocolateview.php';
 
 
-class itemcontroller {
+class chocolatecontroller {
 
     private $model;
     private $view;
 
     function __construct () {
 
-        $this->model = new itemmodel();
-        $this->view = new itemview();
+        $this->model = new chocolatemodel();
+        $this->view = new chocolateview();
     
     }
     function showlist(){
