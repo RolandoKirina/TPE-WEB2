@@ -18,11 +18,16 @@ class homecontroller {
     }
 
     function showgeneraltable() {
-        $brandname = $this->model->getBrandNameandId();
-        $items = $this->model->getAllitems();   
+        $items = $this->chocolatemodel->getAll();   
         $BrandNameandId = $this->model->getBrandNameandId();
-        $this->view->showtable($brandname, $items, $BrandNameandId);
+        $this->view->showtable($items, $BrandNameandId);
     }
-
+    function ShowBrandsTable($brands){
+        $this->view->ShowBrandsTable($brands);
+    }
+    function getAll(){
+        $brands = $this->model->GetAll();
+        return $brands;
+    }
 }
 

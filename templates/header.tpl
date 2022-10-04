@@ -24,6 +24,9 @@
                     <a class="nav-link" aria-current="page" href="home">Home</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="brands">Ver Marcas</a>
+                  </li>
+                  <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="login">Login</a>
                   </li>
                 </ul>

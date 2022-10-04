@@ -11,12 +11,12 @@
     </thead>
     <tbody>
     
-    {foreach from=$items item=$item}
+    {foreach from=$item item=$it}
         <tr>
-        <td>{$item->nombre_chocolate}</td>
-        <td>{$item->precio_unidad}</td>
-        <td>{$item->descripcion}</td>
-        <td>{$item->stock}</td>
+        <td>{$it->nombre_chocolate}</td>
+        <td>{$it->precio_unidad}</td>
+        <td>{$it->descripcion}</td>
+        <td>{$it->stock}</td>
         </tr>
     {/foreach}
 </table

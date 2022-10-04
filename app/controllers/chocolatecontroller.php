@@ -31,10 +31,14 @@ class chocolatecontroller {
             $description = $_POST['description'];
             $stock = $_POST['stock'];
             $id_marca = $_POST['id_marca'];
-
-           $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
-            
+            $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
+            header("Location: " . BASE_URL);
         }
+    }
+    function delete ($id) {
+        $this->model->deleteitem($id);
+        header("Location: " . BASE_URL);
+
     }
     /*function edit ($id, $brandname, $items){
         if (!empty($_POST['names'])&& (!empty($_POST['years']))&& (!empty($_POST['countrys']))){
@@ -44,14 +48,8 @@ class chocolatecontroller {
         $id = $this->model->update($id, $names, $years, $countrys);
         }
     }*/
-
-    /*function delete ($id) {
-        $this->model->deletebrand($id); 
-        header("Location: " . BASE_URL);
-    }*/
-   /* function detail ($id){
-        $this->model->GetDetail($id);
-        $items = $this->model->getAll();
-        $this->view->printOneDetail($items, $id);
-    }*/
+    function detail ($id){
+        $item = $this->model->getItemById($id);
+        $this->view->printOneDetail($item, $id);
+    }
 }

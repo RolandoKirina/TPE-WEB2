@@ -26,26 +26,31 @@ switch ($params[0]) {
         break;
     case 'delete':
         $id = $params[1];
-        $homecontroller->delete($id);
+        $chocolatecontroller->delete($id);
         break;
+    case 'edit':
+    $id = $params[1];
+    $brandname = $homecontroller->getbrandName();
+    $itemname = $chocolatecontroller->getAll();
+    $homecontroller->edit($id, $brandname, $itemname);
+    break;
+    case 'brands':
+       $brands = $homecontroller->GetAll();
+       $homecontroller->ShowBrandsTable($brands);
+    break;
+    case 'login':
+      $controller = new usercontroller();
+      $controller->login(); 
+    break;
     case 'detail':
         $id = $params[1];
         $chocolatecontroller->detail($id);
         break;
-    case 'edit':
-        $id = $params[1];
-        $brandname = $homecontroller->getbrandName();
-        $itemname = $homecontroller->getbrandName();
-        $homecontroller->edit($id, $brandname, $itemname);
-        break;
-    /*case 'login':
-      $controller = new usercontroller();
-      $controller->login(); 
-    break;*/
+
     /*case 'logout':
      $controller = new usercontroller();
      $controller->logout();
-    break;*/   
+    break;*/
     default:
         echo 'error 404';
         break;

@@ -9,15 +9,17 @@ class homeview {
     public function __construct(){
       $this->smarty = new Smarty();
     }
-    function showtable ($BrandNameandId, $items,){
+    function showtable ($items, $BrandNameandId){
       //asigno las variables
       $this->smarty->assign('BrandNameandId', $BrandNameandId);
       $this->smarty->assign('items', $items);  
       $this->smarty->display('renderhome.tpl');   
- 
-
   }
 
+  function ShowBrandsTable($brands){
+    $this->smarty->assign('brands', $brands);
+    $this->smarty->display('ShowbrandsTable.tpl');
+  }
 
   
 }

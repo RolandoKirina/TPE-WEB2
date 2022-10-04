@@ -13,17 +13,17 @@ class homemodel {
         $this->db =  $this->connect();
     }
 
-    function getAllItems (){
-        $query = $this->db->prepare("SELECT * FROM item");
-        $query->execute();
-        $items = $query->fetchAll(PDO::FETCH_OBJ);
-        return $items;
-    }
-
     function getBrandNameandId (){
         $query = $this->db->prepare("SELECT id_marca, nombre_marca FROM marca WHERE 1");
         $query->execute();
         $BrandNameandId = $query->fetchAll(PDO::FETCH_OBJ);
         return $BrandNameandId;
     }
+    function GetAll () {
+        $query = $this->db->prepare("SELECT * FROM marca");
+        $query->execute();
+        $brands = $query->fetchAll(PDO::FETCH_OBJ);
+        return $brands;
+    }
+
 }

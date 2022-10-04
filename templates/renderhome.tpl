@@ -3,24 +3,21 @@
 <table class="table table-striped table-dark">
     <thead>
         <th>Nombre Del Chocolate</th>
-        <th>Ver detalle </th>
         <th>Nombre De la Marca</th>
+        <th>Ver detalle </th>
         <th>Editar</th>
         <th>Eliminar</th>
     </thead>
     <tbody>
     {foreach from=$items item=$item}
         <tr>
-        <td>{$item->nombre_chocolate}</td>
+            <td>{$item->nombre_chocolate}</td>
+            <td>Marca a la cual pertenece </td>
+            <td> <a href="detail/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
+            <td> <a href="edit/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
+            <td> <a href="delete/{$item->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
         </tr>
-    {/foreach}
-    {foreach from=$BrandNameandId item=$brand}
-            <td> <a href="detail/{$brand->id_marca}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
-            <td> {$brand->nombre_marca} </td>
-            <td> <a href="edit/{$brand->id_marca}" class="btn btn-outline-success" type="button"> Editar</a></td>
-            <td> <a href="delete/{$brand->id_marca}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
-        </tr>
-    {/foreach}
+    {/foreach}  
     </tbody>
 </table>
 
@@ -35,9 +32,13 @@
     <label>Stock.</label>
     <input type="text" placeholder="Stock" name="stock" class="form-control">
     <label>Marca a la cual pertenece el Chocolate.</label>
-    <select name="marca" class="form-control">
+    <select name="id_marca" class="form-control">
     {foreach from=$BrandNameandId  item=$brand}
-        <option value="id">{$brand->id_marca} {$brand->nombre_marca}</option>  
+        <option
+        {if {$brand->id_marca} == {{$items->id_marca}}} 
+            selected = {$brand->id_marca}
+        {/if}  
+        value={$brand->id_marca}>{$brand->nombre_marca}</option>
     {/foreach}
     </select>  
     <div class="mt-4">
@@ -61,7 +62,6 @@
         </ul>
     </div>
 </form>
-
 
 {include file="footer.tpl"}
 
