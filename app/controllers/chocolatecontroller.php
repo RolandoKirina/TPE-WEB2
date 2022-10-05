@@ -1,8 +1,8 @@
 <?php
-include_once 'app/models/chocolatemodel.php';
-include_once 'app/views/chocolateview.php';
+require_once './app/models/chocolatemodel.php';
+require_once './app/views/chocolateview.php';
 
-class chocolatecontroller {
+class Chocolatecontroller {
 
     private $model;
     private $view;
@@ -10,21 +10,19 @@ class chocolatecontroller {
     private $homeview;
 
     function __construct () {
-
-        $this->model = new chocolatemodel();
-        $this->view = new chocolateview();
-        $this->homemodel = new homemodel();
-        $this->homeview = new homeview();
-    
+        $this->model = new Chocolatemodel();
+        $this->view = new Chocolateview();
+        $this->homemodel = new Homemodel();
+        $this->homeview = new Homeview();
     }
     function showlist(){
         $this->view->renderlist();
     }
     function showchocolatename (){
-        $items = $this->model->getAll();
+        $items = $this->model->getall();
         $this->view->printitems($items);
     }
-    function addData (){
+    function adddata (){
         if (!empty($_POST['namechocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))&& (!empty($_POST['stock']))&&(!empty($_POST['id_marca']))){
             $namechocolate = $_POST['namechocolate'];
             $price= $_POST['price'];
@@ -37,10 +35,9 @@ class chocolatecontroller {
     }
     function delete ($id) {
         $this->model->deleteitem($id);
-        header("Location: " . BASE_URL);
-
     }
-    /*function edit ($id, $brandname, $items){
+   
+    /*function edit ($id, $brandform){
         if (!empty($_POST['names'])&& (!empty($_POST['years']))&& (!empty($_POST['countrys']))){
         $names = $_POST['names'];
         $years = $_POST['years'];
@@ -49,7 +46,7 @@ class chocolatecontroller {
         }
     }*/
     function detail ($id){
-        $item = $this->model->getItemById($id);
-        $this->view->printOneDetail($item, $id);
+        $item = $this->model->getitembyid($id);
+        $this->view->printonedetail($item, $id);
     }
 }

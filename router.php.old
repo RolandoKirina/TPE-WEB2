@@ -1,0 +1,77 @@
+<?php
+
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+require_once './app/controllers/chocolatecontroller.php';
+require_once './app/controllers/homecontroller.php';
+require_once './app/controllers/usercontroller.php';
+
+$action = 'home';
+
+if (!empty($_GET['action'])) {
+    $action = $_GET['action'];
+} 
+
+$params = explode('/', $action);
+
+$homecontroller = new Homecontroller();
+$chocolatecontroller = new Chocolatecontroller();
+
+switch ($params[0]) {
+    case 'home':
+        $homecontroller->showchocolatetable();
+    break;
+    case 'add':
+        $brand = $params[1];
+    if ($brand == "brand"){
+        $homecontroller->adddata($brand);
+    }
+    else {
+        $chocolatecontroller->adddata();
+    }
+    break;
+    case 'delete': 
+        $id = $params[2];
+
+        // brands/delete/22
+    if ($params == "brands"){
+        $homecontroller->delete($id);
+    }
+    else {
+        // item/delete/22 preguntarrrrrrrrrrrr como tendria q ser
+        $chocolatecontroller->delete($id);
+    }
+    break;
+    case 'edit':
+        $id = $params[1];
+        $homecontroller->getbrandbyid();
+        $homecontroller->update($id);
+    break;
+    case 'brands':
+        switch ($params[1]) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+    
+            //$homecontroller->showbrandstable($brands); 
+                break;
+        }    
+    break;
+    case 'login':
+      $controller = new usercontroller();
+      $controller->login(); 
+    break;
+    case 'detail':
+        $id = $params[1];
+        $chocolatecontroller->detail($id);
+        break;
+    /*case 'logout':
+     $controller = new usercontroller();
+     $controller->logout();
+    break;*/
+    default:
+        echo 'error 404';
+        break;
+}
+

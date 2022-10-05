@@ -2,26 +2,21 @@
 
 require_once './smarty-4.2.1/libs/Smarty.class.php';
 
-class chocolateview{
+class Chocolateview {
 
     private $smarty;
 
     public function __construct(){
       $this->smarty = new Smarty();
     }
-    function printOneDetail($item, $id){
-      $this->smarty->assign('item', $item);
-      $this->smarty->assign('id', $id);
-
-      $this->smarty->display('chocolate.tpl');
-    }
-    function showtable ($brandname, $items){
-      //asigno las variables
-      $this->smarty->assign('brandname', $brandname);
-      $this->smarty->assign('items', $items);
-
-      $this->smarty->display('renderhome.tpl');      
+  function printonedetail($item, $id){
+    $this->smarty->assign('item', $item);
+    $this->smarty->assign('id', $id);
+    $this->smarty->display('chocolate.tpl');
   }
-
-
+  function showbrandtable($brands){
+    $this->smarty->assign('brands', $brands);
+    $this->smarty->display('ShowbrandsTable.tpl');
+  }
 }
+

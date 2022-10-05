@@ -14,7 +14,7 @@
             $this->db =  $this->connect();
         }
 
-        function getUser () {
+        function geuser () {
             $query = $this->db->prepare("SELECT * FROM users WHERE user = ? ");
             $query->execute($user);
             $user = $query->fetchAll(PDO::FETCH_OBJ);

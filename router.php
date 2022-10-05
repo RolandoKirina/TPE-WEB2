@@ -5,7 +5,7 @@ require_once './app/controllers/chocolatecontroller.php';
 require_once './app/controllers/homecontroller.php';
 require_once './app/controllers/usercontroller.php';
 
-$action = 'home';
+$action = 'brands';
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -13,44 +13,43 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$homecontroller = new homecontroller();
-$chocolatecontroller = new chocolatecontroller();
-         
+$homecontroller = new Homecontroller();
+$chocolatecontroller = new Chocolatecontroller();
 
 switch ($params[0]) {
-    case 'home':
-        $homecontroller->showgeneraltable();
-        break;
-    case 'add':
-        $chocolatecontroller->addData();
-        break;
-    case 'delete':
-        $id = $params[1];
-        $chocolatecontroller->delete($id);
-        break;
-    case 'edit':
-    $id = $params[1];
-    $brandname = $homecontroller->getbrandName();
-    $itemname = $chocolatecontroller->getAll();
-    $homecontroller->edit($id, $brandname, $itemname);
-    break;
     case 'brands':
-       $brands = $homecontroller->GetAll();
-       $homecontroller->ShowBrandsTable($brands);
-    break;
-    case 'login':
-      $controller = new usercontroller();
-      $controller->login(); 
-    break;
-    case 'detail':
-        $id = $params[1];
-        $chocolatecontroller->detail($id);
+        switch ($params[1]) {
+            case 'showAdd':
+                # muestra form de agregar
+                break;
+            case 'delete':
+                # brandController->eliminar(param[2]);
+                break;
+            case 'add':
+                # brandController->add();
+                break;            
+            case 'showEdit':
+                # brandController->showEdit(param[2]);
+                break;
+            case 'edit':
+                # brandController->edit(param[2]);
+                break;
+            default:
+                # code...
+                break;
+        }
         break;
-
-    /*case 'logout':
-     $controller = new usercontroller();
-     $controller->logout();
-    break;*/
+    case 'chocolate':
+        switch ($param[1]) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        break;
     default:
         echo 'error 404';
         break;
