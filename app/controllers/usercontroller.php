@@ -2,13 +2,13 @@
 include_once 'app/models/usermodel.php';
 include_once 'app/views/userview.php';
 
-class usercontroller {
+class Usercontroller {
     private $model;
     private $view;
 
     function __construct () {
-        $this->model = new usermodel();
-        $this->view = new userview();
+        $this->model = new Usermodel();
+        $this->view = new Userview();
     }
 
     function validate(){
@@ -22,7 +22,7 @@ class usercontroller {
             header("Location: " . BASE_URL); 
         }
     }
-    function login (){
+    function showlogin (){
 
         $this->view->showlogin();
     }

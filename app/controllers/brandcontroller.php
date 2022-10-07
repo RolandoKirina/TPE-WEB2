@@ -1,9 +1,9 @@
 <?php
-require_once './app/models/homemodel.php';
+require_once './app/models/brandmodel.php';
 require_once './app/models/chocolatemodel.php';
-require_once './app/views/homeview.php';
+require_once './app/views/brandview.php';
 
-class Homecontroller {
+class Brandcontroller {
 
     private $model;
     private $chocolatemodel;
@@ -11,22 +11,17 @@ class Homecontroller {
     private $view;
 
     function __construct () {
-        $this->model = new Homemodel();
-        $this->view = new Homeview();
+        $this->model = new Brandmodel();
+        $this->view = new Brandview();
         $this->chocolatemodel = new Chocolatemodel();
         $this->chocolateview = new Chocolateview ();
     }
-    function showchocolatetable() {
-        $items = $this->chocolatemodel->getall();  
-        $brandnameandid = $this->getbrandnameandid();
-        $brandname = $this->model->convertbrand();
 
-        $this->view->showchocolatetable($items, $brandname, $brandnameandid);
-    }
-
-    function showbrandstable($brands){
+    function showbrandstable(){
+        $brands = $this->model->getall();
         $this->view->showbrandtable($brands);
     }
+
     function getall(){
         $brands = $this->model->getall();
         return $brands;
@@ -35,7 +30,7 @@ class Homecontroller {
         $brandnameandid = $this->model->getbrandnameandid();
         return $brandnameandid;
     }
-    function adddata (){
+    function add (){
         if (!empty($_POST['namebrand']) && (!empty($_POST['year'])) && (!empty($_POST['country']))){
             $namebrand = $_POST['namebrand'];
             $year= $_POST['year'];
@@ -46,17 +41,23 @@ class Homecontroller {
         }
     }
     function delete ($id) {
-        $this->model->deletebrand($id);
+        //si
+        // hay 0 items pertenencientes a esa categoria, se puede borrar, 
+        // si hay uno o mas items pertenencientes a esa categoria, mostrar un msg de error ...
+        $this->model->delete($id);
+        header("Location: " . BASE_URL);
     }
     function edit ($id){
+        $brandbyid = $this->model->getbrandbyid($id);
+        $this->view->showedit($brandbyid);
         if (!empty($_POST['namebrand'])&& (!empty($_POST['year']))&& (!empty($_POST['country']))){
         $name = $_POST['namebrand'];
         $year = $_POST['year'];
         $country = $_POST['country'];
         $id = $this->model->update($name, $year, $country, $id);
+        header("Location: " . BASE_URL);
 
         }
     }
-    
 }
 

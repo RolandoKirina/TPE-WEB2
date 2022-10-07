@@ -14,14 +14,15 @@
         <td>{$brand->nombre_marca}</td>
         <td>{$brand->anio_creacion}</td>
         <td>{$brand->pais_marca}</td>
-        <td> <a href="edit/brand/{$brand->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
-        <td> <a href="delete/{$brand->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
+        <td> <a href="brands/edit/{$brand->id_marca}" class="btn btn-outline-success" type="button"> Editar</a></td>
+        <td> <a href="brands/delete/{$brand->id_marca}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
         </tr>
     {/foreach}
     </tbody>
 </table>
-<h2>Agregar una Marca </h2>
-<form method="POST" action="add/brand" class="form-add">
+
+<h3>Agregar una Marca </h3>
+<form method="POST" action="brands/add" class="form-add">
     <label>Nombre de la Marca.</label>
         <input type="text" placeholder="Nombre" name="namebrand" class="form-control">
     <label>Año de Creacion</label>

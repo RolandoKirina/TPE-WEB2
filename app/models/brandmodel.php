@@ -1,6 +1,6 @@
 <?php
 
-class homemodel {
+class Brandmodel {
 
     private $db;
 
@@ -29,28 +29,22 @@ class homemodel {
         $query->execute([$namebrand, $year, $country]);
         return $this->db->lastinsertid();
     }
-    function deletebrand ($id){
+    function delete ($id){
         $query = $this->db->prepare("DELETE FROM marca WHERE id_marca = ?");
         $query->execute([$id]);
     }
     function getbrandbyid($id){
-        $query = $this->db->prepare("SELECT nombre_marca, anio_creacion, pais_marca FROM item WHERE id_marca=?");
+        $query = $this->db->prepare("SELECT * FROM marca WHERE id_marca=?");
         $query->execute([$id]);
-        $brandform = $query->fetchAll(PDO::FETCH_OBJ);
-        return $brandform;
+        $brandbyid = $query->fetch(PDO::FETCH_OBJ);
+        
+        return $brandbyid;
     }
-    function update ($name, $year, $country, $id) {
-        var_dump($id);
+    function update ($name, $year, $country, $id) { 
+        $brandbyid = $this->getbrandbyid($id);
         $query = $this->db->prepare("UPDATE marca SET nombre_marca=?, anio_creacion=?,pais_marca=? WHERE id_marca=?");
-        $query->execute([$name, $year, $country, $id]);
-    }
-
-    function convertbrand () {
-        $brands = $this->getAll();
-        foreach ($brands as $brand) {
-            $brandname = $brand->nombre_marca;
-        }
-        return $brandname;
+        $result =  $query->execute([$name, $year, $country, $id]);
+     
     }
  
 }

@@ -14,9 +14,12 @@ class Chocolateview {
     $this->smarty->assign('id', $id);
     $this->smarty->display('chocolate.tpl');
   }
-  function showbrandtable($brands){
+
+  function  showchocolatetable ($items , $brands){
+    $this->smarty->assign('items', $items);
     $this->smarty->assign('brands', $brands);
-    $this->smarty->display('ShowbrandsTable.tpl');
+
+    $this->smarty->display('renderchocolatetable.tpl');      
   }
 }
 

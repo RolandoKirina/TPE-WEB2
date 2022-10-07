@@ -2,7 +2,7 @@
 
 require_once './smarty-4.2.1/libs/Smarty.class.php';
 
-class userview {
+class Userview {
 
     private $smarty;
 
@@ -14,7 +14,7 @@ class userview {
     function showlogin () {
      $login = false;
      $this->smarty->assign("login", $login);
-     $this->smarty->display('login.tpl');
+     $this->smarty->display('showlogin.tpl');
     }
 
 

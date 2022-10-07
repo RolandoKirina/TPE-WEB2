@@ -1,6 +1,6 @@
 <?php
 
-    class usermodel {
+    class Usermodel {
         private $db;
 
 

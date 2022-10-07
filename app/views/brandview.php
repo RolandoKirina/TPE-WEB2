@@ -1,0 +1,20 @@
+<?php
+
+require_once './smarty-4.2.1/libs/Smarty.class.php';
+
+class Brandview{
+
+    private $smarty;
+
+    public function __construct(){
+      $this->smarty = new Smarty();
+    }
+    function showbrandtable($brands){
+      $this->smarty->assign('brands', $brands);
+      $this->smarty->display('ShowbrandsTable.tpl');
+    }
+    function showedit($brandbyid){
+      $this->smarty->assign('brandbyid', $brandbyid);
+      $this->smarty->display('showedit.tpl');
+    }
+}
