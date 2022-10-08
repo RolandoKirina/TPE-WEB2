@@ -33,32 +33,37 @@ class Chocolatecontroller {
         $this->view->printitems($items);
     }
     function adddata () {
-            validatedata();
-            $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
-            header("Location: " . BASE_URL);
-        }
-    function delete ($id) {
-        $this->model->deleteitem($id);
-    }
-    function validatedata() {
         if (!empty($_POST['namechocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))&& (!empty($_POST['stock']))&&(!empty($_POST['id_marca']))){
             $namechocolate = $_POST['namechocolate'];
             $price= $_POST['price'];
             $description = $_POST['description'];
             $stock = $_POST['stock'];
             $id_marca = $_POST['id_marca'];
+            $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
+            header("Location: " . BASE_URL . "item");
         }
     }
-    /*function edit ($id, $brandform){
+
+    function delete ($id) {
+        $this->model->delete($id);
+        header("Location: " . BASE_URL . "item");
+    }
+    function detail ($id){
+        $item = $this->model->getitembyid($id);
+        $this->view->printonedetail($item, $id);
+    }
+
+    function edit ($id, $brandform){
         if (!empty($_POST['names'])&& (!empty($_POST['years']))&& (!empty($_POST['countrys']))){
         $names = $_POST['names'];
         $years = $_POST['years'];
         $countrys = $_POST['countrys'];
         $id = $this->model->update($id, $names, $years, $countrys);
         }
-    }*/
-    function detail ($id){
-        $item = $this->model->getitembyid($id);
-        $this->view->printonedetail($item, $id);
     }
+    function filter (){
+        $brands = $this->chocolatemodel->getall();
+        $this->view->showchocolatetable($items, $brands);
+    }
+    
 }

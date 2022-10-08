@@ -19,12 +19,9 @@ class Brandcontroller {
 
     function showbrandstable(){
         $brands = $this->model->getall();
+        $itemid = $this->chocolatemodel->getall();
+        count($itemid);
         $this->view->showbrandtable($brands);
-    }
-
-    function getall(){
-        $brands = $this->model->getall();
-        return $brands;
     }
     function getbrandnameandid(){
         $brandnameandid = $this->model->getbrandnameandid();
@@ -41,11 +38,15 @@ class Brandcontroller {
         }
     }
     function delete ($id) {
-        //si
+        //if ($cantitems > 0){
+            //echo "no se puede borrar perdon";
+        //
+        //else{
+            $this->model->delete($id);
+            header("Location: " . BASE_URL);
+        //}
         // hay 0 items pertenencientes a esa categoria, se puede borrar, 
         // si hay uno o mas items pertenencientes a esa categoria, mostrar un msg de error ...
-        $this->model->delete($id);
-        header("Location: " . BASE_URL);
     }
     function edit ($id){
         $brandbyid = $this->model->getbrandbyid($id);
@@ -56,8 +57,8 @@ class Brandcontroller {
         $country = $_POST['country'];
         $id = $this->model->update($name, $year, $country, $id);
         header("Location: " . BASE_URL);
-
         }
     }
+    
 }
 

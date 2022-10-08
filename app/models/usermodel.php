@@ -1,8 +1,8 @@
 <?php
 
     class Usermodel {
+        
         private $db;
-
 
         private function connect () {
             $db = new PDO('mysql:host=localhost;'.'dbname=tpe;charset=utf8', 'root', '');
@@ -14,13 +14,14 @@
             $this->db =  $this->connect();
         }
 
-        function geuser () {
-            $query = $this->db->prepare("SELECT * FROM users WHERE user = ? ");
-            $query->execute($user);
-            $user = $query->fetchAll(PDO::FETCH_OBJ);
-            return $user;
+        public function getuserbyemail ($email) {
+            $query = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+            $query->execute([$email]);
+            return $query->fetch(PDO::FETCH_OBJ);
         }
+        
+}
  
 
 
-}
+

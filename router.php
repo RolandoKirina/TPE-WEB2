@@ -25,8 +25,10 @@ switch ($params[0]) {
                 break;   
             case 'delete':
                 $id = $params[2];
+                //$error = $params[3];
                 $brandcontroller->delete($id);
                 break; 
+
             case 'edit':
                 $id = $params[2];
                 $brandcontroller->edit($id);
@@ -39,18 +41,22 @@ switch ($params[0]) {
     case 'item':
         switch ($params[1]) {
             case 'add':
-                $chocolatecontroller->add();
+                $chocolatecontroller->adddata();
                 break;
             case 'delete':
                 $id = $params[2];
                 $chocolatecontroller->delete($id);
                 break;
             case 'edit':
+                $id = $params[2];
                 $chocolatecontroller->edit();
                 break;
             case 'detail':
                 $id = $params[2];
                 $chocolatecontroller->detail($id);
+                break;
+            case 'filter':
+                $chocolatecontroller->filter();
                 break;
             default:
                 $chocolatecontroller->showchocolatetable();
@@ -71,5 +77,4 @@ switch ($params[0]) {
         echo 'error 404';
         break;
 }
-
 ?>

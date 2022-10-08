@@ -12,7 +12,7 @@
     {foreach from=$items item=$item}
         <tr>
             <td>{$item->nombre_chocolate}</td>
-                <td> {$item->id_marca}  </td>
+                <td>{$item->id_marca}</td>
             <td> <a href="item/detail/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
             <td> <a href="item/edit/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
             <td> <a href="item/delete/{$item->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
@@ -72,6 +72,14 @@
         </ul>
     </div>
 </form>
+<div>
+<h3>Ver Chocolates de cada Marca </h3>
+{foreach from=$brands item=$brand}
+    <ul class="ul">
+    <li><a href="filter/{$brand->id_marca}">{$brand->nombre_marca}</a></li>
+    </ul>
+{/foreach}
+</div>
 
 
 

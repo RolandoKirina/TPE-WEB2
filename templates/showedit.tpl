@@ -8,7 +8,6 @@
     <label>Pais de la Marca</label>
         <input type="text" name="country" class="form-control">
     <div class="mt-4">
-    <input type="hidden" name="oculto">
     <input type="hidden" name="idhidden" value="{$brandbyid->id_marca}">
     <button type="submit">Editar</a>
     </div>

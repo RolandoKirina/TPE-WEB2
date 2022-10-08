@@ -1,6 +1,6 @@
 {include file = "header.tpl"}
 
-<a href="home" type="button" class="btn btn-secondary">Volver Atras</a>
+<a href="brands" type="button" class="btn btn-secondary">Volver Atras</a>
 <h1>Ingresar</h1>
 <form method="POST" action="login">
 <label>Ingrese su gmail:  </label>

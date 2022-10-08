@@ -20,14 +20,16 @@
         $items = $query->fetchAll(PDO::FETCH_OBJ);
         return $items;
     }
-    function deleteitem ($id){
+    
+    function delete ($id) { 
         $query = $this->db->prepare("DELETE FROM item WHERE id_chocolate = ?");
         $query->execute([$id]);
     }
+    
     function getitembyid($id){
         $query = $this->db->prepare("SELECT nombre_chocolate, precio_unidad, descripcion, stock FROM item WHERE id_chocolate=?");
         $query->execute([$id]);
-        $item = $query->fetchAll(PDO::FETCH_OBJ);
+        $item = $query->fetch(PDO::FETCH_OBJ);
         return $item;
     }
     
