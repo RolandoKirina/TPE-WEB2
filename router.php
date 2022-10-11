@@ -5,11 +5,12 @@ require_once './app/controllers/chocolatecontroller.php';
 require_once './app/controllers/brandcontroller.php';
 require_once './app/controllers/usercontroller.php';
 
-$action = 'brands';
-
-if (!empty($_GET['action'])) {
+ if (!empty($_GET['action'])) {
     $action = $_GET['action'];
-} 
+} else {
+    $action = 'brands'; // acción por defecto si no envían
+}
+
 
 $params = explode('/', $action);
 
@@ -27,8 +28,7 @@ switch ($params[0]) {
                 $id = $params[2];
                 //$error = $params[3];
                 $brandcontroller->delete($id);
-                break; 
-
+                break;
             case 'edit':
                 $id = $params[2];
                 $brandcontroller->edit($id);
@@ -49,14 +49,15 @@ switch ($params[0]) {
                 break;
             case 'edit':
                 $id = $params[2];
-                $chocolatecontroller->edit();
+                $chocolatecontroller->edit($id);
                 break;
             case 'detail':
                 $id = $params[2];
                 $chocolatecontroller->detail($id);
                 break;
             case 'filter':
-                $chocolatecontroller->filter();
+                $id = $params[2];
+                $chocolatecontroller->filter($id);
                 break;
             default:
                 $chocolatecontroller->showchocolatetable();
@@ -65,16 +66,18 @@ switch ($params[0]) {
         break;
     case 'login':
         switch ($params[1]) {
-            case 'login':
-                $usercontroller->login();
+            case 'validate':
+                $usercontroller->validateuser();
                 break;
+            case 'logout':
+                $usercontroller->logout();
             default:
-                $usercontroller->showlogin();
+                $usercontroller->showformlogin();
                 break;
         }
         break;
     default:
-        echo 'error 404';
+        echo('404 Page not found'); 
         break;
 }
 ?>

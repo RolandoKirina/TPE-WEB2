@@ -11,19 +11,10 @@ class Userview {
         $this->smarty = new Smarty ();
     }
 
-    function showlogin () {
-     $login = false;
-     $this->smarty->assign("login", $login);
-     $this->smarty->display('showlogin.tpl');
+
+    function showformLogin($error = null) {
+        $this->smarty->assign("error", $error);
+        $this->smarty->display('showlogin.tpl');
     }
-
-
-    function showmsg (){
-      if($user && $password==($user->password)){
-       echo "Ha iniciado sesión";
-      }
-       else{
-           echo "Ha habido un error, intentelo de nuevo";
-       }
 }
-}
+

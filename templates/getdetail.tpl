@@ -8,16 +8,11 @@
         <th>Descripcion</th>
         <th>Stock</th>
     </thead>
-   <tbody>
-  {foreach from=$item item=$it}
-        <tr>
-        <td>{$it->nombre_chocolate}</td>
-        <td>{$it->precio_unidad}</td>
-        <td>{$it->descripcion}</td>
-        <td>{$it->stock}</td>
-        </tr>
-    {/foreach}
+    <tbody>
+        <td>{$item->nombre_chocolate}</td>
+        <td>{$item->precio_unidad}</td>
+        <td>{$item->descripcion}</td>
+        <td>{$item->stock}</td>
     </tbody>
-    
 </table
     

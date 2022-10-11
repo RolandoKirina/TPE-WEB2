@@ -33,7 +33,6 @@ class Brandcontroller {
             $year= $_POST['year'];
             $country = $_POST['country'];
             $id = $this->model->insertdata($namebrand, $year, $country);
-            //PREGUNTAR COMO HACER Q TE LLEVE A LA PAGINA 2
             header("Location: " . BASE_URL);
         }
     }
@@ -46,9 +45,9 @@ class Brandcontroller {
             header("Location: " . BASE_URL);
         //}
         // hay 0 items pertenencientes a esa categoria, se puede borrar, 
-        // si hay uno o mas items pertenencientes a esa categoria, mostrar un msg de error ...
-    }
-    function edit ($id){
+   // si hay uno o mas items pertenencientes a esa categoria, mostrar un msg de error ...}
+        }
+    function edit ($id) {
         $brandbyid = $this->model->getbrandbyid($id);
         $this->view->showedit($brandbyid);
         if (!empty($_POST['namebrand'])&& (!empty($_POST['year']))&& (!empty($_POST['country']))){
@@ -59,6 +58,6 @@ class Brandcontroller {
         header("Location: " . BASE_URL);
         }
     }
-    
 }
+
 

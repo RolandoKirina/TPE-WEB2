@@ -14,12 +14,14 @@
             $this->db =  $this->connect();
         }
 
-        public function getuserbyemail ($email) {
+        public function getuserbyemail($email) {
             $query = $this->db->prepare("SELECT * FROM users WHERE email = ?");
             $query->execute([$email]);
-            return $query->fetch(PDO::FETCH_OBJ);
+            $email = $query->fetch(PDO::FETCH_OBJ);
+            return $email;
+    
         }
-        
+    
 }
  
 

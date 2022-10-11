@@ -19,11 +19,11 @@ class Chocolatecontroller {
     function showchocolatetable() {
         $items = $this->model->getall();
         $brands = $this->brandmodel->getall();
-    
         foreach ($items as $item) {
-          $item->id_marca = "no me sale :;(";
+          $item->id_marca = $this->brandmodel->getbrandbyid($item->id_marca)->nombre_marca;
         }
         $this->view->showchocolatetable($items, $brands);
+        $this->showfilter();
     }
     function showlist(){
         $this->view->renderlist();
@@ -48,22 +48,41 @@ class Chocolatecontroller {
         $this->model->delete($id);
         header("Location: " . BASE_URL . "item");
     }
-    function detail ($id){
-        $item = $this->model->getitembyid($id);
-        $this->view->printonedetail($item, $id);
+
+    function showedit ($id) {
+        $brands = $this->brandmodel->getall();
+        $items = $this->model->getall();
+        $itembyid = $this->model->getitembyid($id);
+        $this->view->formedititem($brands, $items, $itembyid);
     }
 
-    function edit ($id, $brandform){
-        if (!empty($_POST['names'])&& (!empty($_POST['years']))&& (!empty($_POST['countrys']))){
-        $names = $_POST['names'];
-        $years = $_POST['years'];
-        $countrys = $_POST['countrys'];
-        $id = $this->model->update($id, $names, $years, $countrys);
+    function edit ($id){
+        $this->showedit($id);
+        if (!empty($_POST['chocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))) { 
+        $chocolate = $_POST['chocolate'];
+        $price= $_POST['price'];
+        $description= $_POST['description'];
+        $stock = $_POST['stock'];
+        $marca = $_POST['marca'];
+        $id = $this->model->update($chocolate, $price, $description, $stock, $marca, $id);
+        header("Location: " . BASE_URL . "item");
         }
+     }
+
+    function detail ($id){
+       $item = $this->model->getitemdetail($id);
+       $this->view->showdetail($item);
     }
-    function filter (){
-        $brands = $this->chocolatemodel->getall();
-        $this->view->showchocolatetable($items, $brands);
+    function showfilter (){
+        $brands = $this->brandmodel->getall();
+        $this->view->showfilter($brands);
     }
-    
+    function filter () {
+        $items = $this->model->getall();
+        $brands = $this->brandmodel->getall();
+        
+        $this->model->filter($items, $brands);
+        $this->view->showresultfilter($items);
+    }
+ 
 }

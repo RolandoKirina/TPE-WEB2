@@ -10,25 +10,36 @@ class Usercontroller {
         $this->model = new Usermodel();
         $this->view = new Userview();
     }
+    public function showformlogin() {
+        $this->view->showFormLogin();
+    }
 
-    function validate(){
-        if (!empty($_POST['user']) && (!empty($_POST['password']))){
-
-            $user = $_POST['user'];
+    function validateuser () {
+        
+            $email = $_POST['email'];
             $password = $_POST['password'];
+            $user = $this->model->getuserbygmail($email);
 
-            return $user && $password;
-
-            header("Location: " . BASE_URL); 
+        // verifico que el usuario existe y que las contraseñas coinciden
+        if ($user && password_verify($password, $user->password)) {
+              // inicio una session para este usuario
+              session_start();
+              $_SESSION['USER_ID'] = $user->id;
+              $_SESSION['USER_EMAIL'] = $user->email;
+              $_SESSION['IS_LOGGED'] = true;
+              header("Location: " . BASE_URL);
+             
+        }
+        else {
+            $this->view->showformlogin("El usuario o la contraseña son incorrectos");
         }
     }
-    function showlogin (){
 
-        $this->view->showlogin();
-    }
- 
-    function logout () {
-       echo "Se ha deslogueado con exito";
-    }
-  
+    public function logout() {
+        session_start();
+        session_destroy();
+        header("Location: " . BASE_URL);
+        }
 }
+
+

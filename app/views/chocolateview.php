@@ -9,15 +9,29 @@ class Chocolateview {
     public function __construct(){
       $this->smarty = new Smarty();
     }
-    function printonedetail($item, $id){
-      $this->smarty->assign('item', $item);
-      $this->smarty->assign('id', $id);
-      $this->smarty->display('chocolate.tpl');
-    } 
     function  showchocolatetable ($items , $brands){
       $this->smarty->assign('items', $items);
       $this->smarty->assign('brands', $brands);
-      $this->smarty->display('renderchocolatetable.tpl');      
+      $this->smarty->display('renderchocolatetable.tpl');  
+
+    }
+    function formedititem ($brands, $items, $itembyid) {
+      $this->smarty->assign('brands', $brands);
+      $this->smarty->assign('items', $items);
+      $this->smarty->assign('itembyid', $itembyid);
+      $this->smarty->display('formedititem.tpl');
+    }
+    function showdetail ($item){
+      $this->smarty->assign('item', $item);
+      $this->smarty->display('getdetail.tpl');
+    } 
+    function showfilter($brands){
+      $this->smarty->assign('brands', $brands);
+      $this->smarty->display('showfilter.tpl');
+    }
+    function showresultfilter ($items) {
+      $this->smarty->assign('items', $items);
+      $this->smarty->display('showresultfilter.tpl');
     }
 
 }
