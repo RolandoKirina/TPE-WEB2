@@ -37,14 +37,13 @@ class Brandmodel {
         $query = $this->db->prepare("SELECT * FROM marca WHERE id_marca=?");
         $query->execute([$id]);
         $brandbyid = $query->fetch(PDO::FETCH_OBJ);
-        
         return $brandbyid;
     }
     function update ($name, $year, $country, $id) { 
         $brandbyid = $this->getbrandbyid($id);
         $query = $this->db->prepare("UPDATE marca SET nombre_marca=?, anio_creacion=?,pais_marca=? WHERE id_marca=?");
         $result =  $query->execute([$name, $year, $country, $id]);
-     
     }
+
  
 }

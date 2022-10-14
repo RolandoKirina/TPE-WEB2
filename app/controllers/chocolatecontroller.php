@@ -1,6 +1,7 @@
 <?php
 require_once './app/models/chocolatemodel.php';
 require_once './app/views/chocolateview.php';
+require_once './app/helpers/authhelper.php';
 
 class Chocolatecontroller {
 
@@ -14,8 +15,11 @@ class Chocolatecontroller {
         $this->view = new Chocolateview();
         $this->brandmodel = new Brandmodel();
         $this->brandview = new Brandview();
+        //barrera de seguridad
+        /*$authhelper = new Authhelper();
+        $authhelper->checkloggedin();*/
     }
-    //arreglar
+    
     function showchocolatetable() {
         $items = $this->model->getall();
         $brands = $this->brandmodel->getall();
@@ -23,7 +27,6 @@ class Chocolatecontroller {
           $item->id_marca = $this->brandmodel->getbrandbyid($item->id_marca)->nombre_marca;
         }
         $this->view->showchocolatetable($items, $brands);
-        $this->showfilter();
     }
     function showlist(){
         $this->view->renderlist();
@@ -73,16 +76,14 @@ class Chocolatecontroller {
        $item = $this->model->getitemdetail($id);
        $this->view->showdetail($item);
     }
-    function showfilter (){
-        $brands = $this->brandmodel->getall();
-        $this->view->showfilter($brands);
-    }
+
     function filter () {
-        $items = $this->model->getall();
-        $brands = $this->brandmodel->getall();
-        
-        $this->model->filter($items, $brands);
-        $this->view->showresultfilter($items);
+        if (isset($_POST['selected']) && (!empty($_POST['selected']))){
+            $selected = $_POST['selected'];
+        $itemandbrand = $this->model->getitemandbrand($selected);
+        $this->view->showresultfilter($itemandbrand);
+        }
     }
+
  
 }

@@ -6,15 +6,20 @@ class Brandview{
 
     private $smarty;
 
-    public function __construct(){
+    public function __construct() {
       $this->smarty = new Smarty();
     }
-    function showbrandtable($brands){
+    function showbrandtable($brands) {
       $this->smarty->assign('brands', $brands);
       $this->smarty->display('ShowbrandsTable.tpl');
     }
-    function showedit($brandbyid){
+    function showedit($brandbyid) {
       $this->smarty->assign('brandbyid', $brandbyid);
       $this->smarty->display('showedit.tpl');
+    }
+    function showerror ($error = NULL) {
+      $this->smarty->assign('error', $error);
+      $this->smarty->display('showerror.tpl');
+
     }
 }

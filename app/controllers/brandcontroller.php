@@ -1,7 +1,8 @@
 <?php
 require_once './app/models/brandmodel.php';
-require_once './app/models/chocolatemodel.php';
 require_once './app/views/brandview.php';
+require_once './app/models/chocolatemodel.php';
+require_once './app/helpers/authhelper.php';
 
 class Brandcontroller {
 
@@ -14,14 +15,18 @@ class Brandcontroller {
         $this->model = new Brandmodel();
         $this->view = new Brandview();
         $this->chocolatemodel = new Chocolatemodel();
-        $this->chocolateview = new Chocolateview ();
+        $this->chocolateview = new Chocolateview();
+        //barrera de seguridad
+       /* $authhelper = new Authhelper();
+        $authhelper->checkloggedin();*/
+
     }
 
     function showbrandstable(){
         $brands = $this->model->getall();
         $itemid = $this->chocolatemodel->getall();
-        count($itemid);
         $this->view->showbrandtable($brands);
+        
     }
     function getbrandnameandid(){
         $brandnameandid = $this->model->getbrandnameandid();
@@ -37,16 +42,14 @@ class Brandcontroller {
         }
     }
     function delete ($id) {
-        //if ($cantitems > 0){
-            //echo "no se puede borrar perdon";
-        //
-        //else{
+        try {
             $this->model->delete($id);
             header("Location: " . BASE_URL);
-        //}
-        // hay 0 items pertenencientes a esa categoria, se puede borrar, 
-   // si hay uno o mas items pertenencientes a esa categoria, mostrar un msg de error ...}
+        } 
+        catch (PDOException $e){
+         $this->view->showerror("No se puede eliminar la marca porque contiene al menos un chocolate");
         }
+     }
     function edit ($id) {
         $brandbyid = $this->model->getbrandbyid($id);
         $this->view->showedit($brandbyid);

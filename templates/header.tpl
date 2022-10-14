@@ -25,10 +25,18 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="item">Ver chocolates</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="login">Login</a>
-                  </li>
+                  </li> 
+
+                  {if !isset($smarty.session.USER_ID)}
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="login">Login</a>
+                    </li>
+                  {else} 
+                    <li class="nav-item ml-auto">
+                      <a class="nav-link" aria-current="page" href="logout">Logout ({$smarty.session.USER_EMAIL})</a>
+                    </li>
+                  {/if}
+
                 </ul>
               </div>
             </div>

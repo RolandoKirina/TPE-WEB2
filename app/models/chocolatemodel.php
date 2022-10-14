@@ -51,12 +51,16 @@
         $result =  $query->execute([$chocolate, $price, $description, $stock, $marca, $id]);
     }
 
-    function filter ($id) {
-      // traigo los items y muestro nada mas el nombre de el item perteneciente.
-      //tabla marcas traigo id marca. por get
-      //tabla items traigo el fk y el nombre del chocolate. 
-    }
- }
-
-
+    //solo los chocolates de la marca elegida.
+    public function getitemandbrand($selected) {
+        $query = $this->db->prepare("SELECT * FROM item a INNER JOIN marca b ON a.id_marca = b.id_marca WHERE a.id_marca=? ");
+        $query->execute(array($selected));
+        $itemandbrand = $query->fetchAll(PDO::FETCH_OBJ);
+        return $itemandbrand;
+    } 
  
+
+    //items->id_marca
+    //marca->id_marca
+
+ }

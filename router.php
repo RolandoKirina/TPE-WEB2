@@ -11,71 +11,66 @@ require_once './app/controllers/usercontroller.php';
     $action = 'brands'; // acción por defecto si no envían
 }
 
-
 $params = explode('/', $action);
 
-$brandcontroller = new Brandcontroller();
-$chocolatecontroller = new Chocolatecontroller();
-$usercontroller = new Usercontroller();
-
 switch ($params[0]) {
-    case 'brands':
-        switch ($params[1]) {
+            case 'brands':
+                $brandcontroller = new Brandcontroller();
+                $brandcontroller->showbrandstable();
+                break;
             case 'add':
-                $brandcontroller->add();
+                $brandcontroller = new Brandcontroller();
+                $brandcontroller->addbrand();
                 break;   
             case 'delete':
-                $id = $params[2];
-                //$error = $params[3];
+                $brandcontroller = new Brandcontroller();
+                $id = $params[1];
                 $brandcontroller->delete($id);
                 break;
             case 'edit':
-                $id = $params[2];
+                $brandcontroller = new Brandcontroller();
+                $id = $params[1];
                 $brandcontroller->edit($id);
                 break;
-            default:
-                $brandcontroller->showbrandstable();
+            case 'item':
+                $chocolatecontroller = new Chocolatecontroller();
+                $chocolatecontroller->showchocolatetable();
                 break;
-        }
-        break;
-    case 'item':
-        switch ($params[1]) {
-            case 'add':
+            case 'additem':
+                $chocolatecontroller = new Chocolatecontroller();
                 $chocolatecontroller->adddata();
                 break;
-            case 'delete':
-                $id = $params[2];
+            case 'deleteitem':
+                $chocolatecontroller = new Chocolatecontroller();
+                $id = $params[1];
                 $chocolatecontroller->delete($id);
                 break;
-            case 'edit':
-                $id = $params[2];
+            case 'edititem':
+                $chocolatecontroller = new Chocolatecontroller();
+                $id = $params[1];
                 $chocolatecontroller->edit($id);
                 break;
             case 'detail':
-                $id = $params[2];
+                $chocolatecontroller = new Chocolatecontroller();
+                $id = $params[1];
                 $chocolatecontroller->detail($id);
                 break;
             case 'filter':
-                $id = $params[2];
-                $chocolatecontroller->filter($id);
+                $chocolatecontroller = new Chocolatecontroller();
+                $chocolatecontroller->filter();
                 break;
-            default:
-                $chocolatecontroller->showchocolatetable();
+            case 'login':
+                $usercontroller = new Usercontroller();
+                $usercontroller->showformlogin();
                 break;
-        }
-        break;
-    case 'login':
-        switch ($params[1]) {
             case 'validate':
+                $usercontroller = new Usercontroller();
                 $usercontroller->validateuser();
                 break;
             case 'logout':
+                $usercontroller = new Usercontroller();
                 $usercontroller->logout();
-            default:
-                $usercontroller->showformlogin();
-                break;
-        }
-        break;
+            break;
     default:
         echo('404 Page not found'); 
         break;

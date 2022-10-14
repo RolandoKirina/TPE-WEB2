@@ -13,15 +13,15 @@
         <tr>
             <td>{$item->nombre_chocolate}</td>
             <td>{$item->id_marca}</td>
-            <td> <a href="item/detail/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
-            <td> <a href="item/edit/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
-            <td> <a href="item/delete/{$item->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
+            <td> <a href="detail/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
+            <td> <a href="edititem/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
+            <td> <a href="deleteitem/{$item->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
         </tr>
     {/foreach}  
     </tbody>
 </table>
 <h2>Agregar un chocolate </h2>
-<form method="POST" action="item/add" class="form-add">
+<form method="POST" action="additem" class="form-add">
     <label>Nombre del Chocolate.</label>
         <input type="text" placeholder="Nombre" name="namechocolate" class="form-control">
     <label>Precio.</label>
@@ -46,7 +46,19 @@
         </ul>
     </div>
 </form>
-<div>
+
+
+    <form method="POST" action="filter">
+    <h3> Selecciona una marca para filtrar sus chocolates</h3>
+        <select name="selected" class="form-selected">                                              
+            {foreach from=$brands item=$brand }
+                <option value="{$brand->id_marca}">{$brand->nombre_marca}</option>
+            {/foreach}
+            </select>
+        <button type="submit"> Elegir </button>
+    </form>
+
+{include file = "footer.tpl"}
 
 
 
