@@ -9,8 +9,9 @@ class Brandview{
     public function __construct() {
       $this->smarty = new Smarty();
     }
-    function showbrandtable($brands) {
+    function showbrandtable($brands, $logged) {
       $this->smarty->assign('brands', $brands);
+      $this->smarty->assign('logged', $logged);
       $this->smarty->display('ShowbrandsTable.tpl');
     }
     function showedit($brandbyid) {

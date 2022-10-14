@@ -9,9 +9,10 @@ class Chocolateview {
     public function __construct(){
       $this->smarty = new Smarty();
     }
-    function  showchocolatetable ($items , $brands){
+    function  showchocolatetable ($items , $brands, $logged){
       $this->smarty->assign('items', $items);
       $this->smarty->assign('brands', $brands);
+      $this->smarty->assign('logged', $logged);
       $this->smarty->display('renderchocolatetable.tpl');  
 
     }

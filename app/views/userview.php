@@ -14,6 +14,10 @@ class Userview {
         $this->smarty->assign("error", $error);
         $this->smarty->display('showlogin.tpl');
     }
+    function showmsg($msg){
+        $this->smarty->assign("msg", $msg);
+        $this->smarty->display('showlogin.tpl');
+    }
 }
 
 

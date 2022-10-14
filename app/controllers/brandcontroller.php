@@ -10,29 +10,29 @@ class Brandcontroller {
     private $chocolatemodel;
     private $chocolateiew;
     private $view;
+    private $authhelper;
 
     function __construct () {
+        
         $this->model = new Brandmodel();
         $this->view = new Brandview();
         $this->chocolatemodel = new Chocolatemodel();
         $this->chocolateview = new Chocolateview();
-        //barrera de seguridad
-       /* $authhelper = new Authhelper();
-        $authhelper->checkloggedin();*/
-
+        $this->authhelper = new Authhelper();
     }
 
     function showbrandstable(){
+        $logged = $this->authhelper->logged();
         $brands = $this->model->getall();
         $itemid = $this->chocolatemodel->getall();
-        $this->view->showbrandtable($brands);
+        $this->view->showbrandtable($brands, $logged);
         
     }
     function getbrandnameandid(){
         $brandnameandid = $this->model->getbrandnameandid();
         return $brandnameandid;
     }
-    function add (){
+    function addbrand (){
         if (!empty($_POST['namebrand']) && (!empty($_POST['year'])) && (!empty($_POST['country']))){
             $namebrand = $_POST['namebrand'];
             $year= $_POST['year'];

@@ -3,7 +3,7 @@
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 require_once './app/controllers/chocolatecontroller.php';
 require_once './app/controllers/brandcontroller.php';
-require_once './app/controllers/usercontroller.php';
+require_once './app/controllers/authcontroller.php';
 
  if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -60,16 +60,16 @@ switch ($params[0]) {
                 $chocolatecontroller->filter();
                 break;
             case 'login':
-                $usercontroller = new Usercontroller();
-                $usercontroller->showformlogin();
+                $Authcontroller = new Authcontroller();
+                $Authcontroller->showformlogin();
                 break;
             case 'validate':
-                $usercontroller = new Usercontroller();
-                $usercontroller->validateuser();
+                $Authcontroller = new Authcontroller();
+                $Authcontroller->validateuser();
                 break;
             case 'logout':
-                $usercontroller = new Usercontroller();
-                $usercontroller->logout();
+                $Authcontroller = new Authcontroller();
+                $Authcontroller->logout();
             break;
     default:
         echo('404 Page not found'); 

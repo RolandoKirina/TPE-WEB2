@@ -5,8 +5,10 @@
         <th>Nombre Del Chocolate</th>
         <th>Nombre De la Marca</th>
         <th>Ver detalle </th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        {if $logged}
+            <th>Editar</th>
+            <th>Eliminar</th>
+        {/if}
     </thead>
     <tbody>
     {foreach from=$items item=$item}
@@ -14,12 +16,17 @@
             <td>{$item->nombre_chocolate}</td>
             <td>{$item->id_marca}</td>
             <td> <a href="detail/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Detalles del Producto</a></td>
-            <td> <a href="edititem/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
+            {if $logged}
+                <td> <a href="edititem/{$item->id_chocolate}" class="btn btn-outline-success" type="button"> Editar</a></td>
             <td> <a href="deleteitem/{$item->id_chocolate}"class="btn btn-outline-danger" type="button">Eliminar</a></td>
+            {/if}
+            
         </tr>
     {/foreach}  
     </tbody>
 </table>
+{if $logged}
+    
 <h2>Agregar un chocolate </h2>
 <form method="POST" action="additem" class="form-add">
     <label>Nombre del Chocolate.</label>
@@ -46,9 +53,9 @@
         </ul>
     </div>
 </form>
+{/if}
 
-
-    <form method="POST" action="filter">
+<form method="POST" action="filter">
     <h3> Selecciona una marca para filtrar sus chocolates</h3>
         <select name="selected" class="form-selected">                                              
             {foreach from=$brands item=$brand }

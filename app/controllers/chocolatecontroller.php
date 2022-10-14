@@ -9,24 +9,24 @@ class Chocolatecontroller {
     private $view;
     private $homemodel;
     private $homeview;
+    private $authhelper;
 
     function __construct () {
         $this->model = new Chocolatemodel();
         $this->view = new Chocolateview();
         $this->brandmodel = new Brandmodel();
         $this->brandview = new Brandview();
-        //barrera de seguridad
-        /*$authhelper = new Authhelper();
-        $authhelper->checkloggedin();*/
+        $this->authhelper = new Authhelper();
     }
     
     function showchocolatetable() {
+        $logged = $this->authhelper->logged();
         $items = $this->model->getall();
         $brands = $this->brandmodel->getall();
         foreach ($items as $item) {
           $item->id_marca = $this->brandmodel->getbrandbyid($item->id_marca)->nombre_marca;
         }
-        $this->view->showchocolatetable($items, $brands);
+        $this->view->showchocolatetable($items, $brands, $logged);
     }
     function showlist(){
         $this->view->renderlist();
