@@ -28,7 +28,7 @@
 {if $logged}
     
 <h2>Agregar un chocolate </h2>
-<form method="POST" action="additem" class="form-add">
+<form method="POST" action="additem" class="form-add" enctype="multipart/form-data">
     <label>Nombre del Chocolate.</label>
         <input type="text" placeholder="Nombre" name="namechocolate" class="form-control">
     <label>Precio.</label>

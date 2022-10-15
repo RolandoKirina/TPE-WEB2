@@ -28,21 +28,33 @@
     
     function getitembyid($id){
         $query = $this->db->prepare("SELECT * FROM item WHERE id_chocolate=?");
-        $query->execute([$id]);
+        $query->execute(array($id));
         $item = $query->fetch(PDO::FETCH_OBJ);
         return $item;
     }
     function getitemdetail($id){
-        $query = $this->db->prepare("SELECT nombre_chocolate, precio_unidad, descripcion, stock  FROM item WHERE id_chocolate=?");
+        $query = $this->db->prepare("SELECT nombre_chocolate, precio_unidad, descripcion, stock, img  FROM item WHERE id_chocolate=?");
         $query->execute([$id]);
         $item = $query->fetch(PDO::FETCH_OBJ);
         return $item;
     }
 
-    function insertdata($namechocolate, $price, $description, $stock, $id_marca){
-        $query = $this->db->prepare("INSERT INTO item (nombre_chocolate, precio_unidad, descripcion, stock, id_marca) VALUES (?,?,?,?,?)");
-        $query->execute([$namechocolate, $price, $description, $stock, $id_marca]);
-        return $this->db->lastinsertid();
+    function insertdata($namechocolate, $price, $description, $stock, $idmarca, $imagen = null){
+        
+        $pathimg = null;
+
+        if ($imagen)
+         $pathimg = $this->uploadimg($imagen);
+
+        $query = $this->db->prepare("INSERT INTO item (nombre_chocolate, precio_unidad, descripcion, stock, id_marca, img) VALUES (?,?,?,?,?,?)");
+        
+        $query->execute([$namechocolate, $price, $description, $stock, $idmarca, $pathimg]);
+    }
+    private function uploadimg ($imagen){
+        //con filepath obtenemos la carpeta
+        $target = 'img/' . uniqid() . "." . strtolower(pathinfo($_FILES['input_name']['name'], PATHINFO_EXTENSION));
+        move_uploaded_file($imagen, $target);
+        return $target;
     }
    
     function update($chocolate, $price, $description, $stock, $marca, $id){

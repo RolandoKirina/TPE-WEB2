@@ -33,12 +33,18 @@ class Brandcontroller {
         return $brandnameandid;
     }
     function addbrand (){
+        $logged = $this->authhelper->logged();
+        if ($logged) {
         if (!empty($_POST['namebrand']) && (!empty($_POST['year'])) && (!empty($_POST['country']))){
             $namebrand = $_POST['namebrand'];
             $year= $_POST['year'];
             $country = $_POST['country'];
             $id = $this->model->insertdata($namebrand, $year, $country);
             header("Location: " . BASE_URL);
+        }
+        }
+        else {
+            $this->view->showerror();
         }
     }
     function delete ($id) {
@@ -54,6 +60,8 @@ class Brandcontroller {
      }
     }
     function edit ($id) {
+        $logged = $this->authhelper->logged();
+        if ($logged) {
         $brandbyid = $this->model->getbrandbyid($id);
         $this->view->showedit($brandbyid);
         if (!empty($_POST['namebrand'])&& (!empty($_POST['year']))&& (!empty($_POST['country']))){
@@ -64,6 +72,10 @@ class Brandcontroller {
         header("Location: " . BASE_URL);
         }
     }
+    else {
+        $this->view->showerror();
+     }
 }
 
 
+}

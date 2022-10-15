@@ -14,5 +14,14 @@
         <td>{$item->descripcion}</td>
         <td>{$item->stock}</td>
     </tbody>
-</table
-    
+</table>
+<div class="img">
+{if $add}
+    {if isset({$item->img})}
+        <img src ="{$item->img}" alt="imagen"/>
+    {/if}
+{/if}
+
+</div>
+
+{include file = "footer.tpl"}

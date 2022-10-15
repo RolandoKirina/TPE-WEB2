@@ -4,3 +4,7 @@ body {
 .ul {
     list-style: none;
 }
+.img {
+    width: 200 px;
+    height: 300 px;
+}

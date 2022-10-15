@@ -43,15 +43,26 @@ class Chocolatecontroller {
             $price= $_POST['price'];
             $description = $_POST['description'];
             $stock = $_POST['stock'];
-            $id_marca = $_POST['id_marca'];
-            $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
+            $idmarca = $_POST['id_marca'];
+            $add = true;
+            if ($add){
+            if ($_FILES['input_name']['type'] == "image/jpg"
+            ||  $_FILES['input_name']['type'] == "image/jpeg" 
+            ||  $_FILES['input_name']['type'] == "image/png") {
+                // con el tmp name pasamos el archivo 
+                $this->model->insertData($namechocolate, $price, $description, $stock, $idmarca, $_FILES['input_name']['tmp_name']);
+            }
+        }
+            else{
+                $this->model->insertData($namechocolate, $price, $description, $stock, $idmarca);
+            }
             header("Location: " . BASE_URL . "item");
         }
         else {
             $this->view->showerror();
          }
     }
-
+ }
     function delete ($id) {
         $logged = $this->authhelper->logged();
         if ($logged) {
@@ -61,7 +72,6 @@ class Chocolatecontroller {
         else {
            $this->view->showerror();
         }
-
     }
 
     function showedit ($id) {
@@ -72,6 +82,7 @@ class Chocolatecontroller {
     }
 
     function edit ($id){
+        $logged = $this->authhelper->logged();
         if ($logged){
         $this->showedit($id);
         if (!empty($_POST['chocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))) { 
@@ -82,14 +93,10 @@ class Chocolatecontroller {
         $marca = $_POST['marca'];
         $id = $this->model->update($chocolate, $price, $description, $stock, $marca, $id);
         header("Location: " . BASE_URL . "item");
-        }
-        else {
-            $this->view->showerror();
-        }
-        }
+        }    
      }
-
-    function detail ($id){
+    }
+    function detail ($id) {
        $item = $this->model->getitemdetail($id);
        $this->view->showdetail($item);
     }
@@ -97,10 +104,10 @@ class Chocolatecontroller {
     function filter () {
         if (isset($_POST['selected']) && (!empty($_POST['selected']))){
             $selected = $_POST['selected'];
-        $itemandbrand = $this->model->getitemandbrand($selected);
-        $this->view->showresultfilter($itemandbrand);
+            $itemandbrand = $this->model->getitemandbrand($selected);
+            $this->view->showresultfilter($itemandbrand);
         }
     }
+ }
 
- 
-}
+

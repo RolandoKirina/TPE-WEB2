@@ -22,8 +22,9 @@ class Chocolateview {
       $this->smarty->assign('itembyid', $itembyid);
       $this->smarty->display('formedititem.tpl');
     }
-    function showdetail ($item){
+    function showdetail ($item, $add){
       $this->smarty->assign('item', $item);
+      $this->smarty->assign('add', $add);
       $this->smarty->display('getdetail.tpl');
     } 
     function showfilter($brands){
