@@ -34,6 +34,10 @@ class Chocolateview {
       $this->smarty->assign('items', $items);
       $this->smarty->display('showresultfilter.tpl');
     }
+    function showerror(){
+      $this->smarty->display('showerrordelete.tpl');
+
+    }
 
 }
 

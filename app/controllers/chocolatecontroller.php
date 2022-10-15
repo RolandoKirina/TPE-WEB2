@@ -36,6 +36,8 @@ class Chocolatecontroller {
         $this->view->printitems($items);
     }
     function adddata () {
+        $logged = $this->authhelper->logged();
+        if ($logged) {
         if (!empty($_POST['namechocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))&& (!empty($_POST['stock']))&&(!empty($_POST['id_marca']))){
             $namechocolate = $_POST['namechocolate'];
             $price= $_POST['price'];
@@ -45,11 +47,21 @@ class Chocolatecontroller {
             $id = $this->model->insertData($namechocolate, $price, $description, $stock, $id_marca);
             header("Location: " . BASE_URL . "item");
         }
+        else {
+            $this->view->showerror();
+         }
     }
 
     function delete ($id) {
+        $logged = $this->authhelper->logged();
+        if ($logged) {
         $this->model->delete($id);
         header("Location: " . BASE_URL . "item");
+        }
+        else {
+           $this->view->showerror();
+        }
+
     }
 
     function showedit ($id) {
@@ -60,6 +72,7 @@ class Chocolatecontroller {
     }
 
     function edit ($id){
+        if ($logged){
         $this->showedit($id);
         if (!empty($_POST['chocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))) { 
         $chocolate = $_POST['chocolate'];
@@ -69,6 +82,10 @@ class Chocolatecontroller {
         $marca = $_POST['marca'];
         $id = $this->model->update($chocolate, $price, $description, $stock, $marca, $id);
         header("Location: " . BASE_URL . "item");
+        }
+        else {
+            $this->view->showerror();
+        }
         }
      }
 

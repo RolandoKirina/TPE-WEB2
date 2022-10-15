@@ -42,6 +42,8 @@ class Brandcontroller {
         }
     }
     function delete ($id) {
+        $logged = $this->authhelper->logged();
+        if ($logged) {
         try {
             $this->model->delete($id);
             header("Location: " . BASE_URL);
@@ -50,6 +52,7 @@ class Brandcontroller {
          $this->view->showerror("No se puede eliminar la marca porque contiene al menos un chocolate");
         }
      }
+    }
     function edit ($id) {
         $brandbyid = $this->model->getbrandbyid($id);
         $this->view->showedit($brandbyid);
