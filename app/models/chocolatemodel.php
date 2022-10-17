@@ -42,7 +42,6 @@
     function insertdata($namechocolate, $price, $description, $stock, $idmarca, $imagen = null){
         
         $pathimg = null;
-
         if ($imagen){
             $pathimg = $this->uploadimg($imagen);
             $query = $this->db->prepare("INSERT INTO item (nombre_chocolate, precio_unidad, descripcion, stock, id_marca, img) VALUES (?,?,?,?,?,?)");

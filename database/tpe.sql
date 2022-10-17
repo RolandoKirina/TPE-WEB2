@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2022 a las 17:43:51
+-- Tiempo de generación: 18-10-2022 a las 00:51:49
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -42,10 +42,9 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_chocolate`, `nombre_chocolate`, `precio_unidad`, `descripcion`, `stock`, `img`, `id_marca`) VALUES
-(29, 'Milka Oreo', 100, ' Ingredientes: azúcar, manteca de cacao, pasta de cacao, oreos, LECHE desnatada en polvo, suero de LECHE en polvo, grasa de LECHE, emulgente (lecitinas de SOJA), pasta de AVELLANA, aroma. PUEDE CONTENER OTROS FRUTOS DE CÁSCARA Y TRIGO.', 5, 'img/milka.jpg', 20),
-(32, 'Ferrero Rocher', 1234, ' Están formados por una capa de barquillo rellena con pasta de cacao y avellanas, recubierta por una capa de chocolate con avellanas trituradas y una avellana entera en el interior, además de manteca de palma, envueltos en papel metalizado y colocados individualmente sobre un molde de papel engrasado', 12, 'img/ferrero.jpg', 3),
-(40, 'Dos corazones', 250, 'El icónico bocadito relleno y bañado con el dulce y exquisito chocolate con leche Felfort.', 12, 'img/felfort.jpg', 7),
-(44, 'Wonka', 500, 'Charlie y la fábrica de chocolate', 1, 'img/series634d6f8bc7dcc.jpg', 49);
+(50, 'Ferrero rocher', 700, 'Están formados por una capa de barquillo rellena con pasta de cacao y avellanas, recubierta por una capa de chocolate con avellanas trituradas y una avellana entera en el interior, además de manteca de palma, envueltos en papel metalizado y colocados individualmente sobre un molde de papel engrasado', 3, 'img/item/item634dd9d415a62.jpg', 3),
+(51, 'Dos corazones', 250, 'El icónico bocadito relleno y bañado con el dulce y exquisito chocolate con leche Felfort.', 12, 'img/item634ddb1e18352.jpg', 3),
+(52, 'Milka Oreo ', 250, 'Chocolate Milka', 23, 'img/item634ddc069f787.jpg', 20);
 
 -- --------------------------------------------------------
 
@@ -68,7 +67,7 @@ INSERT INTO `marca` (`id_marca`, `nombre_marca`, `anio_creacion`, `pais_marca`) 
 (3, 'Ferrero', 1946, 'Italia'),
 (7, 'Felfort', 1912, 'Argentina'),
 (20, 'Milka', 1901, 'Suiza'),
-(49, 'ejemplo 1', 2022, 'Argentina');
+(49, 'editar a ver', 1234, 'no se');
 
 -- --------------------------------------------------------
 
@@ -120,7 +119,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `item`
 --
 ALTER TABLE `item`
-  MODIFY `id_chocolate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_chocolate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`

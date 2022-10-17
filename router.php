@@ -13,7 +13,7 @@ require_once './app/controllers/authcontroller.php';
 
 $params = explode('/', $action);
 /*TODO: mejorar el router con dos o tres switchs en params[1], por ejemplo: item, brand, login
-para que quede mas prolijo, arreglar el error que salia trayendo el count de los arreglos.*/
+para que quede mas prolijo, arreglar el error que salia (Undefined array key) con arreglos.*/
 switch ($params[0]) {
             case 'brands':
                 $brandcontroller = new Brandcontroller();
