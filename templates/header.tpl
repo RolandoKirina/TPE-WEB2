@@ -33,7 +33,10 @@
                     </li>
                   {else} 
                     <li class="nav-item ml-auto">
-                      <a class="nav-link" aria-current="page" href="logout">Logout ({$smarty.session.USER_EMAIL})</a>
+                    <a class="nav-link" aria-current="page" href="">Bienvenido ({$smarty.session.USER_EMAIL})</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                      <a class="nav-link" aria-current="page" href="logout">Logout</a>
                     </li>
                   {/if}
 

@@ -16,11 +16,10 @@
     </tbody>
 </table>
 <div class="img">
-{if $add}
+
     {if isset({$item->img})}
         <img src ="{$item->img}" alt="imagen"/>
     {/if}
-{/if}
 
 </div>
 

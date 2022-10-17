@@ -48,12 +48,17 @@
     {/foreach}
     </select>  
     <div class="mt-4">
+    <label>Agregar imagen</label>
+    <input name="input_name" id="image" type="file" placeholder="archivo"></input>
+    </div>
+    <div class="mt-4">
         <ul class="ul">
         <li> <button class="btn btn-outline-success" type="submit"> Agregar </a></li>
         </ul>
     </div>
 </form>
 {/if}
+
 
 <form method="POST" action="filter">
     <h3> Selecciona una marca para filtrar sus chocolates</h3>

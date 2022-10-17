@@ -38,31 +38,28 @@ class Chocolatecontroller {
     function adddata () {
         $logged = $this->authhelper->logged();
         if ($logged) {
-        if (!empty($_POST['namechocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))&& (!empty($_POST['stock']))&&(!empty($_POST['id_marca']))){
-            $namechocolate = $_POST['namechocolate'];
-            $price= $_POST['price'];
-            $description = $_POST['description'];
-            $stock = $_POST['stock'];
-            $idmarca = $_POST['id_marca'];
-            $add = true;
-            if ($add){
-            if ($_FILES['input_name']['type'] == "image/jpg"
-            ||  $_FILES['input_name']['type'] == "image/jpeg" 
+            if (!empty($_POST['namechocolate'])&& (!empty($_POST['price']))&& (!empty($_POST['description']))&& (!empty($_POST['stock']))&&(!empty($_POST['id_marca']))){
+                $namechocolate = $_POST['namechocolate'];
+                $price= $_POST['price'];
+                $description = $_POST['description'];
+                $stock = $_POST['stock'];
+                $idmarca = $_POST['id_marca'];
+    
+            if ($_FILES['input_name']['type'] == "image/jpg" ||  $_FILES['input_name']['type'] == "image/jpeg" 
             ||  $_FILES['input_name']['type'] == "image/png") {
                 // con el tmp name pasamos el archivo 
-                $this->model->insertData($namechocolate, $price, $description, $stock, $idmarca, $_FILES['input_name']['tmp_name']);
+                $this->model->insertData($namechocolate, $price, $description, $stock, $idmarca, $_FILES['input_name']);
             }
-        }
-            else{
+            else {
                 $this->model->insertData($namechocolate, $price, $description, $stock, $idmarca);
             }
-            header("Location: " . BASE_URL . "item");
         }
-        else {
-            $this->view->showerror();
-         }
+        header("Location: " . BASE_URL . "item");
+     }
+     /*else {
+        $this->view->showErrorEmptyForm($logged);
+    }*/
     }
- }
     function delete ($id) {
         $logged = $this->authhelper->logged();
         if ($logged) {
@@ -73,7 +70,6 @@ class Chocolatecontroller {
            $this->view->showerror();
         }
     }
-
     function showedit ($id) {
         $brands = $this->brandmodel->getall();
         $items = $this->model->getall();
@@ -109,5 +105,4 @@ class Chocolatecontroller {
         }
     }
  }
-
 

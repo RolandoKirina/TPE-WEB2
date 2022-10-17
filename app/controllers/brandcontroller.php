@@ -44,7 +44,7 @@ class Brandcontroller {
         }
         }
         else {
-            $this->view->showerror();
+            $this->view->showerroradd("Complete todo el formulario");
         }
     }
     function delete ($id) {

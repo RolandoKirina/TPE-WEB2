@@ -12,15 +12,12 @@ class Brandview{
     function showbrandtable($brands, $logged) {
       $this->smarty->assign('brands', $brands);
       $this->smarty->assign('logged', $logged);
+
       $this->smarty->display('ShowbrandsTable.tpl');
     }
     function showedit($brandbyid) {
       $this->smarty->assign('brandbyid', $brandbyid);
       $this->smarty->display('showedit.tpl');
     }
-    function showerror ($error = NULL) {
-      $this->smarty->assign('error', $error);
-      $this->smarty->display('showerror.tpl');
 
-    }
 }

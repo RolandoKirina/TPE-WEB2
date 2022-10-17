@@ -9,7 +9,6 @@
         <th>Editar</th>
         <th>Eliminar</th>
         {/if}
-   
     </thead>
     <tbody>
     {foreach from=$brands item=$brand}

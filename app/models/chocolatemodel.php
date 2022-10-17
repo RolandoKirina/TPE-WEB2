@@ -43,20 +43,20 @@
         
         $pathimg = null;
 
-        if ($imagen)
-         $pathimg = $this->uploadimg($imagen);
-
-        $query = $this->db->prepare("INSERT INTO item (nombre_chocolate, precio_unidad, descripcion, stock, id_marca, img) VALUES (?,?,?,?,?,?)");
-        
-        $query->execute([$namechocolate, $price, $description, $stock, $idmarca, $pathimg]);
+        if ($imagen){
+            $pathimg = $this->uploadimg($imagen);
+            $query = $this->db->prepare("INSERT INTO item (nombre_chocolate, precio_unidad, descripcion, stock, id_marca, img) VALUES (?,?,?,?,?,?)");
+            $query->execute([$namechocolate, $price, $description, $stock, $idmarca, $pathimg]);
+        }
     }
+    //solo puede acceder los de su misma clase
     private function uploadimg ($imagen){
-        //con filepath obtenemos la carpeta
-        $target = 'img/' . uniqid() . "." . strtolower(pathinfo($_FILES['input_name']['name'], PATHINFO_EXTENSION));
-        move_uploaded_file($imagen, $target);
+        $target = "img/item" . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));  
+        //con el tmp name accedes a la img de por si.
+        move_uploaded_file($imagen['tmp_name'], $target);
         return $target;
     }
-   
+     
     function update($chocolate, $price, $description, $stock, $marca, $id){
         $itembyid = $this->getitembyid($id);
         $query = $this->db->prepare("UPDATE item SET nombre_chocolate=?, precio_unidad=?,descripcion=? , stock =?, id_marca=? WHERE id_chocolate=?");
@@ -70,9 +70,5 @@
         $itemandbrand = $query->fetchAll(PDO::FETCH_OBJ);
         return $itemandbrand;
     } 
- 
-
-    //items->id_marca
-    //marca->id_marca
 
  }
