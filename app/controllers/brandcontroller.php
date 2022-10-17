@@ -43,9 +43,7 @@ class Brandcontroller {
             header("Location: " . BASE_URL);
         }
         }
-        else {
-            $this->view->showerroradd("Complete todo el formulario");
-        }
+     //TODO: Hacer error de formulario vacio
     }
     function delete ($id) {
         $logged = $this->authhelper->logged();
@@ -72,9 +70,7 @@ class Brandcontroller {
         header("Location: " . BASE_URL);
         }
     }
-    else {
-        $this->view->showerror();
-     }
+    //TODO: Hacer error de formulario vacio
 }
 
 

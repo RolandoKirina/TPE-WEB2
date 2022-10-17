@@ -56,9 +56,7 @@ class Chocolatecontroller {
         }
         header("Location: " . BASE_URL . "item");
      }
-     /*else {
-        $this->view->showErrorEmptyForm($logged);
-    }*/
+     //TODO: Hacer error de formulario vacio
     }
     function delete ($id) {
         $logged = $this->authhelper->logged();
@@ -91,6 +89,7 @@ class Chocolatecontroller {
         header("Location: " . BASE_URL . "item");
         }    
      }
+     //TODO: Hacer error de formulario vacio
     }
     function detail ($id) {
        $item = $this->model->getitemdetail($id);
