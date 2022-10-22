@@ -2,13 +2,13 @@
 <h2>Editar Item</h2>
 <form method="POST" class="form-add">
     <label>Nombre del Chocolate.</label>
-        <input type="text" placeholder="Nombre" name="chocolate" class="form-control">
+        <input type="text" placeholder="Nombre" value="{$itembyid->nombre_chocolate}" name="chocolate" class="form-control">
     <label>Precio.</label>
-        <input type="text" placeholder="Precio" name="price" class="form-control">
+        <input type="text" placeholder="Precio" name="price" value="{$itembyid->precio_unidad}" class="form-control">
     <label>Descripción.</label>
-        <input type="text" placeholder="Descripcion" name="description" class="form-control">
+        <input type="text" placeholder="Descripcion" name="description" value="{$itembyid->descripcion}" class="form-control">
     <label>Stock.</label>
-    <input type="text" placeholder="Stock" name="stock" class="form-control">
+    <input type="text" placeholder="Stock" name="stock" value="{$itembyid->stock}"class="form-control">
     <label>Marca a la cual pertenece el Chocolate.</label>
     <select name="marca" class="form-control">
     {foreach from=$brands  item=$brand}

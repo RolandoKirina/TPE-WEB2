@@ -17,6 +17,7 @@ class Brandview{
     }
     function showedit($brandbyid) {
       $this->smarty->assign('brandbyid', $brandbyid);
+      
       $this->smarty->display('showedit.tpl');
     }
 
