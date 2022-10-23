@@ -1,2 +1,4 @@
-img/item/*jpg
+
 templates_c
+img/*.jpg
+img
