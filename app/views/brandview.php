@@ -21,4 +21,8 @@ class Brandview{
       $this->smarty->display('showedit.tpl');
     }
 
+    function showerror() {
+
+      $this->smarty->display('showerrorbrand.tpl');
+    }
 }

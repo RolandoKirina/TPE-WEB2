@@ -39,8 +39,7 @@
         return $item;
     }
 
-    function insertdata($namechocolate, $price, $description, $stock, $idmarca, $imagen = null){
-        
+    function insertdata($namechocolate, $price, $description, $stock, $idmarca, $imagen = null){   
         $pathimg = null;
         if ($imagen){
             $pathimg = $this->uploadimg($imagen);
@@ -50,7 +49,7 @@
     }
     //solo puede acceder los de su misma clase
     private function uploadimg ($imagen){
-        $target = "img/item" . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));  
+        $target = "imgs" . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));  
         //con el tmp name accedes a la img de por si.
         move_uploaded_file($imagen['tmp_name'], $target);
         return $target;
